@@ -1,0 +1,41 @@
+<h1>Listing tables</h1>
+</br>
+
+
+<%= form_for @search, :url => tables_path, :html => {:method => :get} do |f| %>
+  <%= f.label :name_contains %>
+  <%= f.text_field :name_contains %><br />
+  <!-- etc... -->
+  <%= f.submit %>
+<% end %>
+
+<table>
+  <tr>
+    <th>ELias</th>
+    <th>Σημειώσεις</th>
+    <th>Ύψος</th>
+    <th>Πλάτος</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @tables.each do |table| %>
+  <tr>
+    <td><%= link_to table.name, table %></td>
+    <td><%= table.body %></td>
+    <td><%= table.height %></td>
+    <td><%= table.width %></td>
+    <td><%= link_to 'Επιπλέον', table %></td>
+    <td><%= link_to 'Επεξεργασία', edit_table_path(table) %></td>
+    <td><%= link_to 'Διαγραφή', table, confirm: 'Σίγουρος?', method: :delete %></td>
+</hr>
+  </tr>
+<% end %>
+<hr>
+</table>
+</br>
+<%= link_to 'Νέα Καταχώρηση', new_table_path, :class => 'btn btn-primary btn-large' %>
+
+<br />
+
